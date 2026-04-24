@@ -23,11 +23,9 @@ void captureData(Probe* probe, CircularBuffer& buffer) {
 // THE CONSUMER: Lower-priority analysis/UI
 void processData(CircularBuffer& buffer) {
     while (keepRunning) {
-        // Just read the most recent sample for now
-        double val = buffer.get(0);
-        std::cout << "[Analysis] Current Voltage: " << val << " V" << std::endl;
+        double avg = buffer.getAverage();
+        std::cout << "[Math Engine] Buffer Average: " << avg << " V" << std::endl;
 
-        // Analysis runs slower than capture (e.g., 2Hz)
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
     std::cout << "Analysis Thread Stopped.\n";

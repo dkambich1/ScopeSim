@@ -29,5 +29,15 @@ public:
         return buffer[index % capacity];
     }
 
+    double getAverage() {
+        std::lock_guard<std::mutex> lock(mtx); // Protect the read
+        double sum = 0;
+        for (double val : buffer) {
+            sum += val;
+        }
+        return sum / capacity;
+    }
+
+
     size_t getSize() const { return capacity; }
 };
