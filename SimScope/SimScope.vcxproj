@@ -125,11 +125,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\SineProbe.cpp" />
+    <ClCompile Include="src\Trigger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CircularBuffer.h" />
     <ClInclude Include="include\Probe.h" />
     <ClInclude Include="include\SineProbe.h" />
+    <ClInclude Include="include\Trigger.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
