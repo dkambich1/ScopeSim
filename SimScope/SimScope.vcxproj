@@ -127,6 +127,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\CircularBuffer.h" />
     <ClInclude Include="include\Probe.h" />
     <ClInclude Include="include\SineProbe.h" />
   </ItemGroup>

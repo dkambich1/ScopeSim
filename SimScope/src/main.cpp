@@ -1,18 +1,25 @@
 #include <iostream>
-#include "Probe.h"
 #include "SineProbe.h"
+#include "CircularBuffer.h"
 
 int main() {
-    // Polymorphism: Using a Base pointer for a Child object
     Probe* myProbe = new SineProbe();
+    CircularBuffer myBuffer(5); // Small buffer to easily see it "wrap"
 
-    std::cout << "--- " << myProbe->getProbeName() << " Online ---" << std::endl;
+    std::cout << "--- Circular Buffer Test ---" << std::endl;
 
-    // Simulate 10 readings
+    // We will push 10 samples into a 5-slot buffer
     for (int i = 0; i < 10; i++) {
-        std::cout << "Reading " << i << ": " << myProbe->readVoltage() << " V" << std::endl;
+        double val = myProbe->readVoltage();
+        myBuffer.push(val);
+        std::cout << "Pushed: " << val << std::endl;
     }
 
-    delete myProbe; // Manual cleanup (we'll use Smart Pointers later)
+    std::cout << "\nBuffer Contents (should be the LAST 5 samples):" << std::endl;
+    for (int i = 0; i < 5; i++) {
+        std::cout << "Slot " << i << ": " << myBuffer.get(i) << " V" << std::endl;
+    }
+
+    delete myProbe;
     return 0;
 }
